@@ -66,3 +66,67 @@
 #     return sum
 # print(str_length('Приветики'))
     
+
+# ---------------------hw 01.07
+
+# def details(birth,educ,work):
+#     return 'Chumikov Igor Valerievich'
+
+
+# Задание №1. Декоратор
+# Написать оригинальную функцию, которая представляет ваше ФИО.
+# Создать декоратор, который будет представлять вашу дату рождения.
+# Создать декоратор, который будет представлять ваше образование.
+# Создать декоратор который будет представлять вашу сферу деятельност
+
+
+# def data(born):
+#     def wrapper():
+#         print(born)
+#     return wrapper
+
+# def educ(hedu):
+#     def wrapper():
+#         print(hedu)
+#     return wrapper
+
+# def work(hr):
+#     def wrapper():
+#         print(hr)
+#     return wrapper
+
+# def about(data,educ,work):
+#     print('Chumikov Igor Valeriech')
+#     data()
+#     educ()
+#     work()
+
+# data = data('18.10.1990')
+# work = work('hr')
+# educ = educ('hu hr')
+
+# about(data,educ,work)
+
+# Задание №2 Лямбда Выражения
+# Написать функции лямбда выражения которые будут менять значение в
+# переменной.
+
+# sum = lambda sum: sum+sum
+# mult = lambda mult: mult * mult
+
+# print(mult(5))
+
+# Задание №3. Мини программа “Преобразование типов”
+# Написать программу которая будет преобразовывать типы данных.
+# Реализовать возможность выбора пользователем тип данных через
+# терминал
+
+# value = int(input("введите число"))
+# choice = input('Преобразовать в(1-2):\n1 простое \n2 с плавающей точкой')
+
+# if choice == '1':
+#     value == int(value)
+#     print(value)
+# else:
+#     value = float(value)
+#     print(value)
