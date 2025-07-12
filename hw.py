@@ -130,3 +130,73 @@
 # else:
 #     value = float(value)
 #     print(value)
+
+
+
+# ---------------Hw 03.07
+
+# Задание №2.
+# Напишите класс который представляет фабрику и производит продукты
+# питания. Отличает готовые и не готовые продукты.
+
+# class fabric:
+#     def __init__(self):
+#         self.cooked = []
+#         self.raw = []
+#     def addCooked (self, name):
+#         self.cooked.append(name)
+#     def addRaw (self,name):
+#         self.raw.append(name)
+
+# foodFactory = fabric()
+
+
+# foodFactory.addCooked('мяско')
+# foodFactory.addCooked('питса')
+# foodFactory.addCooked('курочка')
+# foodFactory.addRaw('рыба')
+# foodFactory.addRaw('паста')
+# foodFactory.addRaw('овощи')
+
+# print('готовые продукты:',foodFactory.cooked)
+# print('сырые продукты:',foodFactory.raw)
+
+
+# ----------------------hw 08.07
+
+# Задание №2 Техническое задание для разработки программы учета
+# автосалона
+# Нужна программа для управления автосалоном. Она должна помогать
+# следить за машинами, которые есть в наличии, учитывать проданные,
+# считать доходы и расходы.
+# Основное:
+# ● В системе должны храниться данные о машинах (модель, цена
+# продажи, закупочная цена).
+# ● При продаже машина должна уходить из списка доступных и
+# добавляться в проданные.
+# ● Нужно учитывать все траты: закупка машин, зарплаты, аренда и
+# прочее.
+# ● Программа должна автоматически считать прибыль (доходы минус
+# расходы).
+# Дополнительно:
+# Хорошо бы видеть статистику: сколько машин в наличии, сколько продано,
+# общий доход, расходы и прибыль.
+# Если можно, добавить поиск по модели, чтобы быстро находить машину в
+# списке.
+
+class carShowroom:
+    def __init__(self):
+        self.carInShow = []
+        self.soldCar = []
+        self.expenses = []
+        self.income = 0
+
+    def addCar(self,model,sellingPrice,purchasePrice):
+        self.model = model
+        self.sellingPrice = sellingPrice
+        self.purchasePrice = purchasePrice
+        self.carInShow.append(model,sellingPrice,purchasePrice)
+
+show = carShowroom()
+show.addCar("Лада Веста",100000500000,1000000)
+print(show)
