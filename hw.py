@@ -184,19 +184,102 @@
 # Если можно, добавить поиск по модели, чтобы быстро находить машину в
 # списке.
 
-class carShowroom:
-    def __init__(self):
-        self.carInShow = []
-        self.soldCar = []
-        self.expenses = []
-        self.income = 0
+# class carShowroom:
+#     def __init__(self):
+#         self.carInShow = []
+#         self.soldCar = []
+#         self.expenses = []
+#         self.income = 0
 
-    def addCar(self,model,sellingPrice,purchasePrice):
-        self.model = model
-        self.sellingPrice = sellingPrice
-        self.purchasePrice = purchasePrice
-        self.carInShow.append(model,sellingPrice,purchasePrice)
+#     def addCar(self,model,sellingPrice,purchasePrice):
+#         self.model = model
+#         self.sellingPrice = sellingPrice
+#         self.purchasePrice = purchasePrice
+#         self.carInShow.append(model,sellingPrice,purchasePrice)
 
-show = carShowroom()
-show.addCar("Лада Веста",100000500000,1000000)
-print(show)
+# show = carShowroom()
+# show.addCar("Лада Веста",100000500000,1000000)
+# print(show)
+
+
+# ------------------17.07
+
+
+# Задача: "Защищённый калькулятор"
+# Напишите калькулятор, который запрашивает у пользователя два числа и
+# операцию (+, -, *, /), а затем выводит результат.
+# Обработайте возможные исключения:
+# ● Деление на ноль.
+# ● Ввод нечисловых значений.
+# ● Неизвестная операция.
+
+# while True:
+#         numA = input('Введите целое первое число')
+#         numB = input('Введите целое второе число')
+#         try:
+#                 numA = int(numA)
+#                 numB = int(numB)
+#                 break
+#         except ValueError:
+#                 print('Будем пробовать до конца жизни, пока не введем целые числа')
+# while True:
+#         oper = input('Введите операнд (+, -, *, /)')
+#         if oper == '+' or oper == '-' or oper == '*' or oper == "/":
+#             break
+#         print('С операндами также, будем пробовать до конца жизни')
+
+# if oper == '+':
+#         print(numA + numB)
+# elif oper == '-':
+#         print(numA - numB)
+# elif oper == "*":
+#         print(numA * numB)
+# elif oper == "/":
+#         try:
+#             print(numA / numB)
+#         except ZeroDivisionError:
+#             print('Только дурачки делят на 0')
+                        
+        
+# Задача: "Анализатор списка"
+# Напишите функцию, которая принимает список чисел и возвращает:
+# 1. Минимальное и максимальное значение.
+# 2. Среднее арифметическое.
+# 3. Список без дубликатов.
+
+# def process_number(numbers):
+#     min_num = min(numbers)
+#     max_num = max(numbers)
+#     arith_mean = sum(numbers) / len(numbers)
+#     unique_num = set(numbers)
+
+#     return {
+#         'min': min_num,
+#         'max': max_num,
+#         'mean': arith_mean,
+#         'unique': unique_num
+#     }
+    
+# numbers = [1,124,3,5,6,7,1,3,5,73,745,56,2,0,-23,-21,-112,23,43]
+# print(process_number(numbers))
+  
+# Задача “Магазин”
+# Есть кортеж с продуктами:
+# products = ("яблоки", "молоко","хлеб","сыр")
+# Задания:
+# ● Вывести первый и последний продукт из списка.
+# ● Проверить, есть ли "молоко" в списке.
+# ● Посчитать, сколько всего продуктов в списке.
+
+# products = ("яблоки", "молоко", "хлеб", "сыр")
+# print(products[0])
+# print(products[-1])
+# milk = 'молоко'
+# if milk in products:
+#     print('Молоко есть в списке')
+# print(len(products))
+
+
+
+                
+        
