@@ -280,6 +280,85 @@
 # print(len(products))
 
 
+# ------------hw 19.07
 
+# Создать класс BankAccount, представляющий банковский счет, с
+# соблюдением правил инкапсуляции.
+# Требования:
+# Поля класса (должны быть приватными):
+# ownerName (String) — имя владельца счета.
+# balance (double) — текущий баланс.
+# accountNumber (String) — номер счета.
+# Конструктор:
+# Должен принимать параметры: ownerName, initialBalance,
+# accountNumber.
+# Инициализирует все поля.
+# Геттеры (методы доступа):
+# getOwnerName() — возвращает имя владельца.
+# getBalance() — возвращает текущий баланс.
+# getAccountNumber() — возвращает номер счета.
+# Сеттеры (методы изменения с проверками):
+# setOwnerName(String name) — изменяет имя владельца (не должно
+# быть null или пустым).
+# (Для balance и accountNumber сеттеры не нужны, так как их
+# изменение происходит через специальные методы).
+# Методы для операций со счетом:
+# deposit(double amount) — пополняет счет на указанную сумму (сумма
+# должна быть положительной).
+# withdraw(double amount) — снимает деньги со счета (сумма должна
+# быть положительной и не превышать баланс).
+# В обоих методах должны быть проверки, а в случае ошибки — вывод
+# сообщения.
+# Дополнительный метод:
+# displayAccountInfo() — выводит информацию о счете (владелец, номер,
+# баланс).
+
+class BankAccount ():
+    def __init__(self, ownerName, initialBalance, accountNumber):
+        self.__ownerName = ownerName
+        self.__balance = initialBalance
+        self.__accountNumber = accountNumber
+
+    def getOwnerName(self):
+        return self.__ownerName
                 
-        
+    def getBalance(self):
+        return self.__balance
+
+    def getAccountNumber(self):
+        return self.__accountNumber   
+
+    def setOwnerName(self, name):
+        if name is not None and name != '':
+            self.__ownerName = name
+        else:
+            print("Пустое или неправильное имя")
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f"Счет пополнен на {amount}")
+        else:
+            print("Ошибка: Сумма пополнения должна быть положительной.")
+
+    def withdraw(self, amount):
+        if amount > 0:
+            if amount <= self.__balance:
+                self.__balance -= amount
+                print(f"Со счета снято {amount}.")
+            else:
+                print("Мало средств")
+
+    def displayAccountInfo(self):
+        print(f"Информация о счете:")
+        print(f"Владелец: {self.__ownerName}")
+        print(f"Номер счета: {self.__accountNumber}")
+        print(f"Баланс: {self.__balance}")
+
+account = BankAccount("Чумиков Игорь", 1000, "456456465")
+account.displayAccountInfo() 
+account.deposit(3300)   
+account.withdraw(2000)   
+account.withdraw(1000)  
+account.deposit(-100)   
+account.displayAccountInfo()
