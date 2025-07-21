@@ -313,52 +313,102 @@
 # displayAccountInfo() — выводит информацию о счете (владелец, номер,
 # баланс).
 
-class BankAccount ():
-    def __init__(self, ownerName, initialBalance, accountNumber):
-        self.__ownerName = ownerName
-        self.__balance = initialBalance
-        self.__accountNumber = accountNumber
+# class BankAccount ():
+#     def __init__(self, ownerName, initialBalance, accountNumber):
+#         self.__ownerName = ownerName
+#         self.__balance = initialBalance
+#         self.__accountNumber = accountNumber
 
-    def getOwnerName(self):
-        return self.__ownerName
+#     def getOwnerName(self):
+#         return self.__ownerName
                 
-    def getBalance(self):
-        return self.__balance
+#     def getBalance(self):
+#         return self.__balance
 
-    def getAccountNumber(self):
-        return self.__accountNumber   
+#     def getAccountNumber(self):
+#         return self.__accountNumber   
 
-    def setOwnerName(self, name):
-        if name is not None and name != '':
-            self.__ownerName = name
-        else:
-            print("Пустое или неправильное имя")
+#     def setOwnerName(self, name):
+#         if name is not None and name != '':
+#             self.__ownerName = name
+#         else:
+#             print("Пустое или неправильное имя")
 
-    def deposit(self, amount):
-        if amount > 0:
-            self.__balance += amount
-            print(f"Счет пополнен на {amount}")
-        else:
-            print("Ошибка: Сумма пополнения должна быть положительной.")
+#     def deposit(self, amount):
+#         if amount > 0:
+#             self.__balance += amount
+#             print(f"Счет пополнен на {amount}")
+#         else:
+#             print("Ошибка: Сумма пополнения должна быть положительной.")
 
-    def withdraw(self, amount):
-        if amount > 0:
-            if amount <= self.__balance:
-                self.__balance -= amount
-                print(f"Со счета снято {amount}.")
-            else:
-                print("Мало средств")
+#     def withdraw(self, amount):
+#         if amount > 0:
+#             if amount <= self.__balance:
+#                 self.__balance -= amount
+#                 print(f"Со счета снято {amount}.")
+#             else:
+#                 print("Мало средств")
 
-    def displayAccountInfo(self):
-        print(f"Информация о счете:")
-        print(f"Владелец: {self.__ownerName}")
-        print(f"Номер счета: {self.__accountNumber}")
-        print(f"Баланс: {self.__balance}")
+#     def displayAccountInfo(self):
+#         print(f"Информация о счете:")
+#         print(f"Владелец: {self.__ownerName}")
+#         print(f"Номер счета: {self.__accountNumber}")
+#         print(f"Баланс: {self.__balance}")
 
-account = BankAccount("Чумиков Игорь", 1000, "456456465")
-account.displayAccountInfo() 
-account.deposit(3300)   
-account.withdraw(2000)   
-account.withdraw(1000)  
-account.deposit(-100)   
-account.displayAccountInfo()
+# account = BankAccount("Чумиков Игорь", 1000, "456456465")
+# account.displayAccountInfo() 
+# account.deposit(3300)   
+# account.withdraw(2000)   
+# account.withdraw(1000)  
+# account.deposit(-100)   
+# account.displayAccountInfo()
+
+
+# ----------------------------hw 22.07
+
+# Задание №1. Множества
+# Даны два списка:
+# a = [1, 2, 3, 4, 5, 6, 7, 8]
+# b = [5, 6, 7, 8, 9, 10, 11]
+# Преобразуйте их в множества.
+# Найдите:
+# ● Общие элементы (intersection)
+# ● Элементы, которые есть только в a (difference)
+# ● Все уникальные элементы из обоих списков (union)
+# ● Удалите элемент 10 из второго множества.
+
+# a = [1, 2, 3, 4, 5, 6, 7, 8]
+# b = [5, 6, 7, 8, 9, 10, 11]
+# a = set(a)
+# b = set(b)
+# c = a.intersection(b)
+# d = a.difference(b)
+# e = a.union(b)
+# b.discard(10)
+
+# Задание №2. List comprehension
+# Дан список чисел:
+# numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# ● Создайте новый список, содержащий только чётные числа из
+# numbers.
+# ● Создайте список квадратов чисел из numbers.
+# ● Создайте список, в котором все числа из numbers заменены на строку
+# "чётное" или "нечётное" в зависимости от их значения.
+
+# numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# even_numbers = [i for i in numbers if i % 2 == 0]
+# square_numbers = [i ** 2 for i in numbers]
+# even_or_not = ['чет' if i % 2 == 0 else 'нечет' for i in numbers]
+# print(even_or_not)
+
+# Задание №3 и №4 Упаковка и распаковка
+# Напишите функцию print_kwargs, которая принимает произвольное
+# количество именованных аргументов и выводит их в формате
+# ключ=значение.
+# Пример вызова:
+# print_args(1, 2, 3,"hello")
+
+# def print_kwargs(**kwargs):
+#     for key in kwargs:
+#         print(f'{key} = {kwargs[key]}')
+# print_kwargs(name = 'Igor', age = '34', work = 'hr')
