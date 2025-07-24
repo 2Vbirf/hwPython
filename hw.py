@@ -412,3 +412,23 @@
 #     for key in kwargs:
 #         print(f'{key} = {kwargs[key]}')
 # print_kwargs(name = 'Igor', age = '34', work = 'hr')
+
+
+# --------------------------------- hw 24/07
+
+import pandas as pd
+
+data = {'name': ['Игорь', 'Ажелика', 'Андрей', 'Полина1', 'Полина2', 'Ян', 'Дима', 'Тимур'],
+        'age': [34, 24, 15, 18, 19, 93, 38, 29],
+        'city': ['Сочи', 'Сочи', 'Ростов', 'Адлер', 'Анадырь', 'Архипоосиповка','Нью-йорк', 'Архипоосиповка']}
+
+df = pd.DataFrame(data)
+
+print(df.describe()) #Статистика по числовым столбцам
+print(df['age'].value_counts().sort_index())  # частотность возрастов
+print(df['city'].value_counts()) # статистика по городам
+print(df[df['age'] > 30]) #Фильтрация по возрасту
+print(df.nsmallest(1, 'age'))
+print(df.nlargest(1, 'age'))
+print(df.groupby('city')['age'].mean())
+
