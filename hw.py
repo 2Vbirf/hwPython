@@ -416,19 +416,145 @@
 
 # --------------------------------- hw 24/07
 
-import pandas as pd
+# import pandas as pd
 
-data = {'name': ['Игорь', 'Ажелика', 'Андрей', 'Полина1', 'Полина2', 'Ян', 'Дима', 'Тимур'],
-        'age': [34, 24, 15, 18, 19, 93, 38, 29],
-        'city': ['Сочи', 'Сочи', 'Ростов', 'Адлер', 'Анадырь', 'Архипоосиповка','Нью-йорк', 'Архипоосиповка']}
+# data = {'name': ['Игорь', 'Ажелика', 'Андрей', 'Полина1', 'Полина2', 'Ян', 'Дима', 'Тимур'],
+#         'age': [34, 24, 15, 18, 19, 93, 38, 29],
+#         'city': ['Сочи', 'Сочи', 'Ростов', 'Адлер', 'Анадырь', 'Архипоосиповка','Нью-йорк', 'Архипоосиповка']}
 
-df = pd.DataFrame(data)
+# df = pd.DataFrame(data)
 
-print(df.describe()) #Статистика по числовым столбцам
-print(df['age'].value_counts().sort_index())  # частотность возрастов
-print(df['city'].value_counts()) # статистика по городам
-print(df[df['age'] > 30]) #Фильтрация по возрасту
-print(df.nsmallest(1, 'age'))
-print(df.nlargest(1, 'age'))
-print(df.groupby('city')['age'].mean())
+# print(df.describe()) #Статистика по числовым столбцам
+# print(df['age'].value_counts().sort_index())  # частотность возрастов
+# print(df['city'].value_counts()) # статистика по городам
+# print(df[df['age'] > 30]) #Фильтрация по возрасту
+# print(df.nsmallest(1, 'age'))
+# print(df.nlargest(1, 'age'))
+# print(df.groupby('city')['age'].mean())
 
+# Задание №2 Техническое задание для разработки программы учета
+# автосалона
+# Нужна программа для управления автосалоном. Она должна помогать
+# следить за машинами, которые есть в наличии, учитывать проданные,
+# считать доходы и расходы.
+# Основное:
+# ● В системе должны храниться данные о машинах (модель, цена
+# продажи, закупочная цена).
+# ● При продаже машина должна уходить из списка доступных и
+# добавляться в проданные.
+# ● Нужно учитывать все траты: закупка машин, зарплаты, аренда и
+# прочее.
+# ● Программа должна автоматически считать прибыль (доходы минус
+# расходы).
+# Дополнительно:
+# Хорошо бы видеть статистику: сколько машин в наличии, сколько продано,
+# общий доход, расходы и прибыль.
+# Если можно, добавить поиск по модели, чтобы быстро находить машину в
+# списке.
+
+class CarDealership:
+    def __init__(self, name):
+        self.name = name
+        self.available_cars = []  
+        self.sold_cars = []       
+        self.expenses = 0         
+        self.income = 0           
+        self.profit = 0          
+        
+    def add_car(self, model, sale_price, purchase_price):
+        car = {
+            'model': model,
+            'sale_price': sale_price,
+            'purchase_price': purchase_price,
+            'status': 'available'
+        }
+        self.available_cars.append(car)
+        self.expenses += purchase_price
+        self._calculate_profit()
+        print(f"Добавлена машина: {model} (Цена продажи: {sale_price}, Закупочная: {purchase_price})")
+    
+    def sell_car(self, model):
+        car_found = False
+        for car in self.available_cars:
+            if car['model'] == model and car['status'] == 'available':
+                car['status'] = 'sold'
+                self.sold_cars.append(car)
+                self.income += car['sale_price']
+                self._calculate_profit()
+                print(f"Продана машина: {model} за {car['sale_price']}")
+                car_found = True
+                break
+        
+        if not car_found:
+            print(f"Машина {model} не найдена или уже продана")
+    
+    def add_expense(self, amount, description):
+        if amount < 0:
+            print("Ошибка: сумма расходов не может быть отрицательной")
+            return
+        self.expenses += amount
+        self._calculate_profit()
+        print(f"Добавлены расходы: {description} на сумму {amount}")
+    
+    def _calculate_profit(self):
+        self.profit = self.income - self.expenses
+    
+    def search_car(self, model):
+        found_cars = [car for car in self.available_cars if car['model'] == model and car['status'] == 'available']
+        if not found_cars:
+            print(f"Машина {model} не найдена в наличии")
+            return None
+        return found_cars
+    
+    def get_stats(self):
+        stats = {
+            'available_count': len([car for car in self.available_cars if car['status'] == 'available']),
+            'sold_count': len(self.sold_cars),
+            'total_income': self.income,
+            'total_expenses': self.expenses,
+            'profit': self.profit
+        }
+        return stats
+    
+    def print_stats(self):
+        stats = self.get_stats()
+        print(f"\n=== Статистика автосалона '{self.name}' ===")
+        print(f"Машин в наличии: {stats['available_count']}")
+        print(f"Машин продано: {stats['sold_count']}")
+        print(f"Общий доход: {stats['total_income']}")
+        print(f"Общие расходы: {stats['total_expenses']}")
+        print(f"Прибыль: {stats['profit']}\n")
+    
+    def print_available_cars(self):
+        print("\n=== Доступные машины ===")
+        available = [car for car in self.available_cars if car['status'] == 'available']
+        if not available:
+            print("Нет доступных машин")
+            return
+        
+        for car in available:
+            print(f"{car['model']} - Цена продажи: {car['sale_price']}")
+
+
+if __name__ == "__main__":
+    dealership = CarDealership("СочиАвто")
+    
+    dealership.add_car("Лада", 25000, 20000)
+    dealership.add_car("Нива", 23000, 18000)
+    dealership.add_car("Запорожец", 55000, 45000)
+    dealership.add_car("Ваз", 26000, 21000)  
+    
+    dealership.add_expense(5000, "Аренда")
+    dealership.add_expense(3000, "Зарплата")
+    
+
+    dealership.sell_car("Лада")
+    dealership.sell_car("Ваз")  
+    
+    print("\nПоиск машины:")
+    found = dealership.search_car("Запорожец")
+    if found:
+        print(f"Найдена: {found[0]['model']} за {found[0]['sale_price']}")
+    
+    dealership.print_stats()
+    dealership.print_available_cars()
