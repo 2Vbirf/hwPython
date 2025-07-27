@@ -452,109 +452,179 @@
 # Если можно, добавить поиск по модели, чтобы быстро находить машину в
 # списке.
 
-class CarDealership:
-    def __init__(self, name):
-        self.name = name
-        self.available_cars = []  
-        self.sold_cars = []       
-        self.expenses = 0         
-        self.income = 0           
-        self.profit = 0          
+# class CarDealership:
+#     def __init__(self, name):
+#         self.name = name
+#         self.available_cars = []  
+#         self.sold_cars = []       
+#         self.expenses = 0         
+#         self.income = 0           
+#         self.profit = 0          
         
-    def add_car(self, model, sale_price, purchase_price):
-        car = {
-            'model': model,
-            'sale_price': sale_price,
-            'purchase_price': purchase_price,
-            'status': 'available'
-        }
-        self.available_cars.append(car)
-        self.expenses += purchase_price
-        self._calculate_profit()
-        print(f"Добавлена машина: {model} (Цена продажи: {sale_price}, Закупочная: {purchase_price})")
+#     def add_car(self, model, sale_price, purchase_price):
+#         car = {
+#             'model': model,
+#             'sale_price': sale_price,
+#             'purchase_price': purchase_price,
+#             'status': 'available'
+#         }
+#         self.available_cars.append(car)
+#         self.expenses += purchase_price
+#         self._calculate_profit()
+#         print(f"Добавлена машина: {model} (Цена продажи: {sale_price}, Закупочная: {purchase_price})")
     
-    def sell_car(self, model):
-        car_found = False
-        for car in self.available_cars:
-            if car['model'] == model and car['status'] == 'available':
-                car['status'] = 'sold'
-                self.sold_cars.append(car)
-                self.income += car['sale_price']
-                self._calculate_profit()
-                print(f"Продана машина: {model} за {car['sale_price']}")
-                car_found = True
-                break
+#     def sell_car(self, model):
+#         car_found = False
+#         for car in self.available_cars:
+#             if car['model'] == model and car['status'] == 'available':
+#                 car['status'] = 'sold'
+#                 self.sold_cars.append(car)
+#                 self.income += car['sale_price']
+#                 self._calculate_profit()
+#                 print(f"Продана машина: {model} за {car['sale_price']}")
+#                 car_found = True
+#                 break
         
-        if not car_found:
-            print(f"Машина {model} не найдена или уже продана")
+#         if not car_found:
+#             print(f"Машина {model} не найдена или уже продана")
     
-    def add_expense(self, amount, description):
-        if amount < 0:
-            print("Ошибка: сумма расходов не может быть отрицательной")
-            return
-        self.expenses += amount
-        self._calculate_profit()
-        print(f"Добавлены расходы: {description} на сумму {amount}")
+#     def add_expense(self, amount, description):
+#         if amount < 0:
+#             print("Ошибка: сумма расходов не может быть отрицательной")
+#             return
+#         self.expenses += amount
+#         self._calculate_profit()
+#         print(f"Добавлены расходы: {description} на сумму {amount}")
     
-    def _calculate_profit(self):
-        self.profit = self.income - self.expenses
+#     def _calculate_profit(self):
+#         self.profit = self.income - self.expenses
     
-    def search_car(self, model):
-        found_cars = [car for car in self.available_cars if car['model'] == model and car['status'] == 'available']
-        if not found_cars:
-            print(f"Машина {model} не найдена в наличии")
-            return None
-        return found_cars
+#     def search_car(self, model):
+#         found_cars = [car for car in self.available_cars if car['model'] == model and car['status'] == 'available']
+#         if not found_cars:
+#             print(f"Машина {model} не найдена в наличии")
+#             return None
+#         return found_cars
     
-    def get_stats(self):
-        stats = {
-            'available_count': len([car for car in self.available_cars if car['status'] == 'available']),
-            'sold_count': len(self.sold_cars),
-            'total_income': self.income,
-            'total_expenses': self.expenses,
-            'profit': self.profit
-        }
-        return stats
+#     def get_stats(self):
+#         stats = {
+#             'available_count': len([car for car in self.available_cars if car['status'] == 'available']),
+#             'sold_count': len(self.sold_cars),
+#             'total_income': self.income,
+#             'total_expenses': self.expenses,
+#             'profit': self.profit
+#         }
+#         return stats
     
-    def print_stats(self):
-        stats = self.get_stats()
-        print(f"\n=== Статистика автосалона '{self.name}' ===")
-        print(f"Машин в наличии: {stats['available_count']}")
-        print(f"Машин продано: {stats['sold_count']}")
-        print(f"Общий доход: {stats['total_income']}")
-        print(f"Общие расходы: {stats['total_expenses']}")
-        print(f"Прибыль: {stats['profit']}\n")
+#     def print_stats(self):
+#         stats = self.get_stats()
+#         print(f"\n=== Статистика автосалона '{self.name}' ===")
+#         print(f"Машин в наличии: {stats['available_count']}")
+#         print(f"Машин продано: {stats['sold_count']}")
+#         print(f"Общий доход: {stats['total_income']}")
+#         print(f"Общие расходы: {stats['total_expenses']}")
+#         print(f"Прибыль: {stats['profit']}\n")
     
-    def print_available_cars(self):
-        print("\n=== Доступные машины ===")
-        available = [car for car in self.available_cars if car['status'] == 'available']
-        if not available:
-            print("Нет доступных машин")
-            return
+#     def print_available_cars(self):
+#         print("\n=== Доступные машины ===")
+#         available = [car for car in self.available_cars if car['status'] == 'available']
+#         if not available:
+#             print("Нет доступных машин")
+#             return
         
-        for car in available:
-            print(f"{car['model']} - Цена продажи: {car['sale_price']}")
+#         for car in available:
+#             print(f"{car['model']} - Цена продажи: {car['sale_price']}")
 
 
-if __name__ == "__main__":
-    dealership = CarDealership("СочиАвто")
+# if __name__ == "__main__":
+#     dealership = CarDealership("СочиАвто")
     
-    dealership.add_car("Лада", 25000, 20000)
-    dealership.add_car("Нива", 23000, 18000)
-    dealership.add_car("Запорожец", 55000, 45000)
-    dealership.add_car("Ваз", 26000, 21000)  
+#     dealership.add_car("Лада", 25000, 20000)
+#     dealership.add_car("Нива", 23000, 18000)
+#     dealership.add_car("Запорожец", 55000, 45000)
+#     dealership.add_car("Ваз", 26000, 21000)  
     
-    dealership.add_expense(5000, "Аренда")
-    dealership.add_expense(3000, "Зарплата")
+#     dealership.add_expense(5000, "Аренда")
+#     dealership.add_expense(3000, "Зарплата")
     
 
-    dealership.sell_car("Лада")
-    dealership.sell_car("Ваз")  
+#     dealership.sell_car("Лада")
+#     dealership.sell_car("Ваз")  
     
-    print("\nПоиск машины:")
-    found = dealership.search_car("Запорожец")
-    if found:
-        print(f"Найдена: {found[0]['model']} за {found[0]['sale_price']}")
+#     print("\nПоиск машины:")
+#     found = dealership.search_car("Запорожец")
+#     if found:
+#         print(f"Найдена: {found[0]['model']} за {found[0]['sale_price']}")
     
-    dealership.print_stats()
-    dealership.print_available_cars()
+#     dealership.print_stats()
+#     dealership.print_available_cars()
+
+# -----------------------------hw 29.07
+
+# Объединение строк:
+# Создайте две переменные с именами first_name = "Иван" и last_name =
+# "Петров". Объедините их в одну строку с пробелом между именем и
+# фамилией.
+
+# first_name = "Иван"
+# last_name = "Петров"
+# conk = first_name + ' ' + last_name
+
+# print(conk)
+
+# Повторение строки:
+# Напишите программу, которая выводит слово "Привет" 3 раза подряд без
+# пробелов
+
+# print('Привет\n' * 3)
+
+# Длина строки:
+# Пользователь вводит строку. Напишите код, который выводит её длину.
+
+# str = input('введите строку')
+# lenght = len(str)
+# print(lenght)
+
+# Первый и последний символ:
+# Дана строка s = "Программирование". Выведите первый и последний
+# символы
+
+# s = "Программирование"
+# print(s[1], s[-1])
+
+# Срезы:
+# Из строки s = "abcdefgh" извлеките подстроку "cde" и "fgh".
+
+# s = "abcdefgh"
+# a = s[2:5]
+# b = s[-3:]
+
+# Дана строка s = "PyThOn". Приведите её к верхнему и нижнему
+# регистру
+
+# s = "PyThOn"
+# a = s.lower()
+# b = s.upper()
+# print(b)
+
+# Замена подстроки:
+# В строке s = "Я люблю Java!" замените "Java" на "Python".
+
+# s = "Я люблю Java!"
+# a = s.replace('Java', 'Python')
+# print(a)
+
+# Разделение строки:
+# Разделите строку s = "Яблоко,Груша,Апельсин" по запятым в список
+# фруктов.
+
+# s = "Яблоко,Груша,Апельсин"
+# fruts = s.split()
+# print(fruts)
+
+# Поиск подстроки:
+# Проверьте, содержит ли строка s = "Hello, World!" подстроку "World".
+
+# s = "Hello, World!"
+# find = s.find('World')
+# print(find)
